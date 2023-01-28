@@ -1,12 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = "http://www.comparegroceryprices.org/search/data/comparison.shtml"
+url = 'https://www.bls.gov/regions/mid-atlantic/data/averageretailfoodandenergyprices_usandwest_table.htm'
+page = requests.get(url)
+soup = BeautifulSoup(page.content, 'html.parser')
 
-response = requests.get(url)
-beautifulsoup = BeautifulSoup(response.text, "html.parser")
+# Find the table containing the data
 
-results=beautifulsoup.find("tbody")
-food=results.find("td", width_="191")
-print(food)
-print(food.text)
+food = soup.find_all('p', class_='sub1')
+food2 = soup.find_all('p', class_='sub2')
+# Extract the rows from the table
+for i in food:
+    print(i.txt)
