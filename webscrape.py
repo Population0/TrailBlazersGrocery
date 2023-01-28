@@ -1,14 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://www.bls.gov/regions/mid-atlantic/data/averageretailfoodandenergyprices_usandwest_table.htm'
+url = 'https://www.numbeo.com/food-prices/country_result.jsp?country=United+States'
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
 # Find the table containing the data
-
-food = soup.find_all('p', class_='sub1')
-food2 = soup.find_all('p', class_='sub2')
+prices = soup.find_all('span', class_='first_currency')
 # Extract the rows from the table
+for i in prices:
+    print(i.text)
+
+food = soup.find(id='tbody')
+names = food.find_all('td')
+
 for i in food:
     print(i.txt)
