@@ -26,6 +26,6 @@ for i in range(14):
 # convert list to dictionary
 dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)}
 
-# Serializing json
-json_obj = json.dumps(dct)
-print(json_obj)
+# Create outfile
+with open("sample.json", "w") as outfile:
+        json.dump(dct, outfile)
