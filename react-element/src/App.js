@@ -29,7 +29,7 @@ export default class groceryArrList extends Component {
       if (this.state.inputValue === "") return;
       
       let price=(this.map.get(this.state.inputValue));
-      this.state.runningTotal += price;
+      this.runningTotal += price;
       this.state.priceVal="$"+price;
       this.calculate(price, 24);
       this.addGrocery();
