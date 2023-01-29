@@ -15,9 +15,11 @@ export default class groceryArrList extends Component {
     priceArr: [],
     priceVal: "",
 
+    runningTotal: 0,
+
+    investTotal:0
+
   }
-  runningTotal = 0;
-  investTotal = 0;
   map = new Map(Object.entries(data));
   addGrocery = () => {
     this.setState({ groceryArr: [this.state.inputValue, ...this.state.groceryArr], priceArr: [this.state.priceVal, ...this.state.priceArr],  investArr: [this.state.investVal, ...this.state.investArr]});
