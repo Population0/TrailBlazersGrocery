@@ -31,15 +31,12 @@ export default class groceryArrList extends Component {
       let price=(this.map.get(this.state.inputValue));
       this.runningTotal += price;
       this.state.priceVal="$"+price;
-      this.calculate(price, 24);
+      this.state.investVal = "$"+(Math.round(Math.pow(price, 1/(65-24 * 12)) / (1+10/12)*100))/100;
       this.addGrocery();
       this.state.inputValue = "";
     }
   };
   
-  calculate = (todaysPrice,age) => {
-    this.state.investVal = "$"+(Math.round(Math.pow(todaysPrice, 1/(65-age * 12)) / (1+10/12)*100))/100;
-  }
 
   handleChange = (e) => {
     this.setState({ inputValue: e.target.value });
