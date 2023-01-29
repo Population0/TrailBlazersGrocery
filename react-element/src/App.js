@@ -13,26 +13,30 @@ export default class groceryArrList extends Component {
     investVal: "",
 
     priceArr: [],
-    priceVal: ""
+    priceVal: "",
+
+    runningTotal: 0,
+    investTotal: 0,
   }
   map = new Map(Object.entries(data));
   addGrocery = () => {
     this.setState({ groceryArr: [this.state.inputValue, ...this.state.groceryArr], priceArr: [this.state.priceVal, ...this.state.priceArr],  investArr: [this.state.investVal, ...this.state.investArr]});
     // I want to insert separate paragraph tags (groceryArrs from this.state.groceryArr) into the list element here
   };
-
+  
   handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       if (this.state.inputValue === "") return;
       
       let price=(this.map.get(this.state.inputValue));
+      this.state.runningTotal += price;
       this.state.priceVal="$"+price;
       this.calculate(price, 24);
       this.addGrocery();
       this.state.inputValue = "";
     }
   };
-
+  
   calculate = (todaysPrice,age) => {
     this.state.investVal = "$"+(Math.round(Math.pow(todaysPrice, 1/(65-age * 12)) / (1+10/12)*100))/100;
   }
@@ -97,6 +101,10 @@ export default class groceryArrList extends Component {
             {this.state.priceArr.map((priceArr) => {
               return <p>{priceArr}</p>;
             })}
+            <div>
+              <h4>Total: ${this.state.runningTotal}</h4>
+              
+            </div>
           </div>
           <div style={listCategory}>
             <h3>
@@ -105,6 +113,9 @@ export default class groceryArrList extends Component {
             {this.state.investArr.map((investArr) => {
               return <p>{investArr}</p>;
             })}
+            <div>
+              <h4>You only need to invest: ${this.state.investTotal}</h4>
+            </div>
           </div>
         </div>
 
