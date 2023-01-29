@@ -43,13 +43,21 @@ export default class TodoList extends Component {
       alignItems: "center",
       flexDirection: "column"
     };
-    const listStyle = {
+    const NPI = {
       display: "flex",
-      alignItems: "row"
+      alignItems: "column",
+      justifyContent: "Space-between"
     };
+    const titleStyle = {
+      backgroundColor: "#B27092"
+
+    };
+    const listCategory = {
+      padding: "90px"
+    }
     return (
       <div style={mainBox}>
-        <h1>
+        <h1 style={titleStyle}>
           LETS START WHOPPING
         </h1>
         <div style={mystyle}>
@@ -63,11 +71,27 @@ export default class TodoList extends Component {
           />
           <button onClick={this.addTodo}>Add to list</button>
         </div>
-        <div className="list">
+        <div style={NPI}>
+          <div className="list" style={listCategory}>
+          <h3>
+            ITEM
+          </h3>
             {this.state.todo.map((todo) => {
               return <p>{todo}</p>;
             })}
           </div>
+          <div style={listCategory}>
+            <h3>
+              PRICE
+            </h3>
+          </div>
+          <div style={listCategory}>
+            <h3>
+              INVESTMENT
+            </h3>
+          </div>
+        </div>
+        
       </div>
     );
   }
