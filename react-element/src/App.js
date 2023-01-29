@@ -15,9 +15,9 @@ export default class groceryArrList extends Component {
     priceArr: [],
     priceVal: "",
 
-    runningTotal: 0,
-    investTotal: 0,
   }
+  runningTotal = 0;
+  investTotal = 0;
   map = new Map(Object.entries(data));
   addGrocery = () => {
     this.setState({ groceryArr: [this.state.inputValue, ...this.state.groceryArr], priceArr: [this.state.priceVal, ...this.state.priceArr],  investArr: [this.state.investVal, ...this.state.investArr]});
@@ -99,7 +99,7 @@ export default class groceryArrList extends Component {
               return <p>{priceArr}</p>;
             })}
             <div>
-              <h4>Total: ${this.state.runningTotal}</h4>
+              <h4>Total: ${this.runningTotal}</h4>
               
             </div>
           </div>
@@ -111,7 +111,7 @@ export default class groceryArrList extends Component {
               return <p>{investArr}</p>;
             })}
             <div>
-              <h4>You only need to invest: ${this.state.investTotal}</h4>
+              <h4>You only need to invest: ${this.investTotal}</h4>
             </div>
           </div>
         </div>
