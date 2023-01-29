@@ -24,12 +24,22 @@ export default class groceryArrList extends Component {
     
     // I want to insert separate paragraph tags (groceryArrs from this.state.groceryArr) into the list element here
   };
+  findPrice = () => {
+  
+  };
+  calcInvestment = () => {
 
+  };
+  calculate = (todaysPrice,age) => {
+    let principal = Math.pow(todaysPrice, 1/(65-age * 12)) / (1+10/12);
+  }
   handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       if (this.state.inputValue === "") return;
 
       this.addGrocery();
+      this.findPrice();
+      this.calcInvestment();
       this.state.inputValue = "";
     }
   };
@@ -72,13 +82,13 @@ export default class groceryArrList extends Component {
         <div style={mystyle}>
           <input
             type="text"
-            className="insertgroceryArr"
+            className="groceryArr"
             placeholder="Add a new item!"
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             value={this.state.inputValue}
           />
-          <button onClick={this.addgroceryArr}>Add to list</button>
+          <button onClick={this.groceryArr}>Add to list</button>
         </div>
         <div style={NPI}>
           <div className="list" style={listCategory}>
