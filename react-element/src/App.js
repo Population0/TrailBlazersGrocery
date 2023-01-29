@@ -1,25 +1,24 @@
 import './App.css';
 
 import React, { Component} from "react";
+import data from "./components/sample.json";
+
 
 export default class groceryArrList extends Component {
   state = {
     groceryArr: [],
-    inputValue: ""
-  };
-  price = {
-    //pull price from json file
+    inputValue: "",
+
+    investArr: [],
+    investVal: "",
+
     priceArr: [],
     priceVal: ""
   };
-  investment = {
-    investArr: [],
-    investVal: ""
-  };
-
+  
+  map = new Map(Object.entries(data));
   addGrocery = () => {
-    this.setState({ groceryArr: [this.state.inputValue, ...this.state.groceryArr] });
-    
+    this.setState({ groceryArr: [this.state.inputValue, ...this.state.groceryArr], priceArr: [this.state.priceVal, ...this.state.priceArr]});
     // I want to insert separate paragraph tags (groceryArrs from this.state.groceryArr) into the list element here
   };
 
@@ -27,15 +26,16 @@ export default class groceryArrList extends Component {
     if (e.keyCode === 13) {
       if (this.state.inputValue === "") return;
 
+      this.setState({priceVal: this.map.get(this.state.inputValue)})
       this.addGrocery();
       this.state.inputValue = "";
     }
   };
 
   handleChange = (e) => {
+    console.log(data)
     this.setState({ inputValue: e.target.value });
   };
-
   render() {
     const mystyle = {
       color: "white",
