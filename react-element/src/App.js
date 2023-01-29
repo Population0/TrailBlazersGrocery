@@ -3,7 +3,7 @@ import './App.css';
 import React, { Component} from "react";
 import data from "./components/sample.json";
 
-
+/*wow*/
 export default class groceryArrList extends Component {
   state = {
     groceryArr: [],
