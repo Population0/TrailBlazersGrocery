@@ -76,7 +76,6 @@ export default class groceryArrList extends Component {
             onKeyDown={this.handleKeyDown}
             value={this.state.inputValue}
           />
-          <button onClick={this.groceryArr}>Add to list</button>
         </div>
         <div style={NPI}>
           <div className="list" style={listCategory}>
