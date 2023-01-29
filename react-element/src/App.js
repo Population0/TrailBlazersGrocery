@@ -15,9 +15,9 @@ export default class groceryArrList extends Component {
     priceArr: [],
     priceVal: "",
 
-    runningTotal: 0,
+    runningTotal: 0.0,
 
-    investTotal:0
+    investTotal:0.0
 
   }
   map = new Map(Object.entries(data));
@@ -30,10 +30,10 @@ export default class groceryArrList extends Component {
     if (e.keyCode === 13) {
       if (this.state.inputValue === "") return;
       
-      let price=(this.map.get(this.state.inputValue));
-      this.runningTotal += price;
+      let price=(Number)(this.map.get(this.state.inputValue));
+      this.state.runningTotal=(this.state.runningTotal+price);
       this.state.priceVal="$"+price;
-      this.state.investVal = "$"+(Math.round(Math.pow(price, 1/(65-24 * 12)) / (1+10/12)*100))/100;
+      this.state.investVal = "$"+(Math.round((Math.pow(price, 1/((65-24) * 12)) / (1+10/12))*100))/100;
       this.addGrocery();
       this.state.inputValue = "";
     }
@@ -41,7 +41,7 @@ export default class groceryArrList extends Component {
   
 
   handleChange = (e) => {
-    this.setState({ inputValue: e.target.value });
+    this.setState({ inputValue: e.target.value});
   };
   render() {
     const mystyle = {
@@ -101,7 +101,7 @@ export default class groceryArrList extends Component {
               return <p>{priceArr}</p>;
             })}
             <div>
-              <h4>Total: ${this.runningTotal}</h4>
+              <h4>Total: ${this.state.runningTotal}</h4>
               
             </div>
           </div>
